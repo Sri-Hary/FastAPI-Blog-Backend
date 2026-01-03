@@ -52,3 +52,9 @@ I developed a backend API that provides:
 ---
 
 ## Project Structure
+FastAPI-Blog-Backend/
+│
+├── main.py # FastAPI application and API routes
+├── database.py # Database connection configuration
+├── models.py # SQLAlchemy database models
+└── README.md # Project documentation
