@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Depends, status
 from pydantic import BaseModel
 from typing import Annotated
 import models
-from database import engine, sessionlocal
+from database import engine, SessionLocal
 from sqlalchemy.orm import Session
 
 app = FastAPI()
@@ -17,7 +17,7 @@ class UserBase(BaseModel):
     username: str
 
 def get_db():
-    db = sessionlocal()
+    db = SessionLocal()
     try:
         yield db
     finally:
@@ -62,4 +62,5 @@ async def read_user(user_id: int, db: db_dependency):
     user = db.query(models.User).filter(models.User.id==user_id).first()
     if user is None:
         raise HTTPException(status_code=404, detail='User nit found')
+
     return user
